@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CareerPilot AI</title>
+
+<meta name="description"
+content="AI-inspired Career Roadmap Generator">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ===========================
+NAVBAR
+=========================== -->
+
+<nav>
+
+<div class="logo">
+
+🚀 CareerPilot AI
+
+</div>
+
+<ul>
+
+<li><a href="#home">Home</a></li>
+
+<li><a href="#analyze">Analyze</a></li>
+
+<li><a href="#dashboard">Dashboard</a></li>
+
+<li><a href="#roadmap">Roadmap</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ===========================
+HERO
+=========================== -->
+
+<section
+class="hero"
+id="home">
+
+<div class="hero-content">
+
+<h1>
+
+Build Your
+
+<span>Dream Career</span>
+
+With AI 🚀
+
+</h1>
+
+<p>
+
+CareerPilot AI helps students and professionals generate personalized career roadmaps, identify skill gaps, discover learning resources, estimate career readiness, and create a structured growth plan—all in your browser without APIs or a backend.
+
+</p>
+
+<a
+href="#analyze"
+class="btn">
+
+Start Planning →
+
+</a>
+
+</div>
+
+<div class="hero-image">
+
+<img
+
+src="https://images.unsplash.com/photo-1522202176988-66273c2fd55?w=1200"
+
+alt="Career"
+
+>
+
+</div>
+
+</section>
+
+<!-- ===========================
+CAREER FORM
+=========================== -->
+
+<section id="analyze">
+
+<div class="card">
+
+<h2>
+
+🎯 Career Information
+
+</h2>
+
+<form id="careerForm">
+
+<label>
+
+Full Name
+
+</label>
+
+<input
+
+type="text"
+
+id="fullName"
+
+placeholder="Enter your name"
+
+required>
+
+<label>
+
+Dream Career
+
+</label>
+
+<select
+
+id="dreamCareer"
+
+required>
+
+<option value="">
+
+Select Career
+
+</option>
+
+</select>
+
+<label>
+
+Education
+
+</label>
+
+<select
+
+id="education"
+
+required>
+
+<option value="">
+
+Select Education
+
+</option>
+
+</select>
+
+<label>
+
+Experience
+
+</label>
+
+<select
+
+id="experience"
+
+required>
+
+<option value="">
+
+Select Experience
+
+</option>
+
+</select>
+
+<label>
+
+Current Skills
+(Comma separated)
+
+</label>
+
+<textarea
+
+id="currentSkills"
+
+placeholder="HTML, CSS, JavaScript"
+
+required>
+
+</textarea>
+
+<label>
+
+Dream Company
+
+</label>
+
+<input
+
+type="text"
+
+id="dreamCompany"
+
+placeholder="Google"
+
+>
+
+<div class="button-group">
+
+<button
+type="submit">
+
+🚀 Analyze Career
+
+</button>
+
+<button
+
+type="button"
+
+onclick="resetForm()">
+
+Reset
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+<!-- ===========================
+DASHBOARD
+=========================== -->
+
+<section id="dashboard">
+
+<h2 class="section-title">
+
+📊 Career Dashboard
+
+</h2>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h3>Career Score</h3>
+
+<h1 id="careerScore">0%</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Skill Score</h3>
+
+<h1 id="skillScore">0%</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Readiness</h3>
+
+<h1 id="readinessScore">0%</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Growth Score</h3>
+
+<h1 id="growthScore">0%</h1>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+CHART
+=========================== -->
+
+<section>
+
+<div class="card">
+
+<h2>
+
+📈 Career Analysis Chart
+
+</h2>
+
+<div class="chart-container">
+
+<canvas id="careerChart"></canvas>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+CAREER BADGE
+=========================== -->
+
+<section>
+
+<div id="badgeContainer"></div>
+
+</section>
+
+<!-- ===========================
+REQUIRED SKILLS
+=========================== -->
+
+<section>
+
+<h2 class="section-title">
+
+🧠 Required Skills
+
+</h2>
+
+<div
+
+id="skillsContainer"
+
+class="grid">
+
+</div>
+
+</section>
+
+<!-- ===========================
+LEARNING RESOURCES
+=========================== -->
+
+<section>
+
+<h2 class="section-title">
+
+📚 Learning Resources
+
+</h2>
+
+<div
+
+id="resourcesContainer"
+
+class="grid">
+
+</div>
+
+</section>
+
+<!-- ===========================
+CAREER ROADMAP
+=========================== -->
+
+<section id="roadmap">
+
+<h2 class="section-title">
+
+🗺️ Career Roadmap
+
+</h2>
+
+<div
+
+id="roadmapContainer"
+
+class="roadmap-grid">
+
+</div>
+
+</section>
+
+<!-- ===========================
+INTERNSHIP PLAN
+=========================== -->
+
+<section>
+
+<h2 class="section-title">
+
+💼 Internship Plan
+
+</h2>
+
+<div
+
+id="internshipContainer"
+
+class="grid">
+
+</div>
+
+</section>
+<!-- ===========================
+REPORT SECTION
+=========================== -->
+
+<section id="report">
+
+<h2 class="section-title">
+
+📄 Career Report
+
+</h2>
+
+<div
+
+id="reportContainer"
+
+class="card">
+
+<p>
+
+Analyze your career to generate a personalized report.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ===========================
+ACTION BUTTONS
+=========================== -->
+
+<section>
+
+<div class="action-buttons">
+
+<button
+onclick="downloadReport()">
+
+📥 Download Report
+
+</button>
+
+<button
+onclick="viewHistory()">
+
+📜 View History
+
+</button>
+
+<button
+onclick="toggleTheme()">
+
+🌙 Toggle Theme
+
+</button>
+
+<button
+onclick="resetForm()">
+
+🔄 Reset
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ===========================
+FEATURES
+=========================== -->
+
+<section>
+
+<h2 class="section-title">
+
+✨ Why CareerPilot AI?
+
+</h2>
+
+<div class="grid">
+
+<div class="feature-card">
+
+<h3>🎯 Career Analysis</h3>
+
+<p>Analyze your current skills and receive a personalized career score.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>📚 Learning Resources</h3>
+
+<p>Discover curated resources to improve your technical knowledge.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>🗺️ Career Roadmap</h3>
+
+<p>Follow a structured 30, 60, 90 and 365-day roadmap.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>💼 Internship Guidance</h3>
+
+<p>Learn how to prepare for internships and placements effectively.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>📊 Progress Tracking</h3>
+
+<p>Visualize your readiness using an interactive radar chart.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>🏆 Career Badge</h3>
+
+<p>Unlock badges based on your career readiness score.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+FOOTER
+=========================== -->
+
+<footer>
+
+<h2>
+
+🚀 CareerPilot AI
+
+</h2>
+
+<p>
+
+Helping students build better careers with AI-inspired guidance.
+
+</p>
+
+<p>
+
+Made with ❤️ using HTML, CSS, JavaScript & Chart.js
+
+</p>
+
+<p>
+
+© 2026 CareerPilot AI. All Rights Reserved.
+
+</p>
+
+</footer>
+
+</div>
+
+<!-- ===========================
+SCRIPTS
+=========================== -->
+
+<script src="data.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
